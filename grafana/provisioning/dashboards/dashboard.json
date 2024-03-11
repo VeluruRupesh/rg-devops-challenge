@@ -1,0 +1,168 @@
+{
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": {
+            "type": "grafana",
+            "uid": "-- Grafana --"
+          },
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "graphTooltip": 0,
+    "id": 2,
+    "links": [],
+    "panels": [
+      {
+        "datasource": "Prometheus",
+        "description": "This time series panel displays the sum of the per-second average rates of change of requests made to the Admin API's HTTP endpoints over the last 1 minute.",
+        "id": 1,
+        "targets": [
+          {
+            "datasource": "Prometheus",
+            "expr": "sum(rate(caddy_admin_http_requests_total[1m]))"
+          }
+        ],
+        "title": "Admin API Requests Rate",
+        "type": "timeseries"
+      },
+      {
+        "datasource": "Prometheus",
+        "description": "This time series panel displays the sum of the per-second average rates of change of total HTTP requests made to the Caddy server over the last 1 minute.",
+        "id": 2,
+        "targets": [
+          {
+            "datasource": "Prometheus",
+            "expr": "sum(rate(caddy_http_requests_total[1m]))"
+          }
+        ],
+        "title": "Total HTTP Requests Rate",
+        "type": "timeseries"
+      },
+      {
+        "datasource": "Prometheus",
+        "description": "This panel shows the distribution of HTTP request durations across different methods and response codes",
+        "id": 3,
+        "targets": [
+          {
+            "datasource": "Prometheus",
+            "expr": "caddy_http_request_duration_seconds_count"
+          }
+        ],
+        "title": "HTTP Request Duration Distribution",
+        "type": "histogram"
+      },
+      {
+        "datasource": "Prometheus",
+        "id": 4,
+        "targets": [
+          {
+            "datasource": "Prometheus",
+            "expr": "caddy_http_requests_in_flight"
+          }
+        ],
+        "title": "Current HTTP active workload",
+        "type": "gauge"
+      },
+      {
+        "datasource": "Prometheus",
+        "description": "This panel displays the health status of the server.\n\"1\" -> Represents server is healthy and operational.\n\"0\" -> Represents server is unhealthy",
+        "id": 5,
+        "targets": [
+          {
+            "datasource": "Prometheus",
+            "expr": "caddy_reverse_proxy_upstreams_healthy"
+          }
+        ],
+        "title": "Server Health Status",
+        "type": "timeseries"
+      },
+      {
+        "datasource": "Prometheus",
+        "description": "This Grafana panel displays the average rate of change of CPU time consumption by the process over the past 1 minute. The metric process_cpu_seconds_total measures the total CPU time consumed by the process since its start. ",
+        "id": 6,
+        "targets": [
+          {
+            "datasource": "Prometheus",
+            "expr": "rate(process_cpu_seconds_total[1m])"
+          }
+        ],
+        "title": "CPU Usage Rate Over Time",
+        "type": "timeseries"
+      },
+      {
+        "datasource": "Prometheus",
+        "description": "This panel displays the amount of physical memory (RAM) consumed by the process in bytes.",
+        "id": 7,
+        "targets": [
+          {
+            "datasource": "Prometheus",
+            "expr": "process_resident_memory_bytes"
+          }
+        ],
+        "title": "Process Resident Memory Usage",
+        "type": "timeseries"
+      },
+      {
+        "datasource": "Prometheus",
+        "description": "This panel displays the current count of Goroutines in the Go program. Goroutines are lightweight threads of execution used for concurrent programming in Go. Monitoring the number of Goroutines helps in understanding the concurrency behavior and workload of the program. High values may indicate a high level of concurrency or potential issues with Goroutine management.",
+        "id": 8,
+        "targets": [
+          {
+            "datasource": "Prometheus",
+            "expr": "go_goroutines"
+          }
+        ],
+        "title": "Go Goroutines Count",
+        "type": "timeseries"
+      },
+      {
+        "datasource": "Prometheus",
+        "description": "This panel displays the total amount of memory currently allocated and in use by the Go program. High values may indicate memory-intensive operations or potential memory leaks.",
+        "id": 9,
+        "targets": [
+          {
+            "datasource": "Prometheus",
+            "expr": "go_memstats_alloc_bytes"
+          }
+        ],
+        "title": "Go Allocated Memory Usage",
+        "type": "timeseries"
+      },
+      {
+        "datasource": "Prometheus",
+        "description": "This panel displays the current count of operating system (OS) threads created by the Go program. High values may indicate a high level of concurrency or potential issues with thread management.",
+        "id": 10,
+        "targets": [
+          {
+            "datasource": "Prometheus",
+            "expr": "go_threads"
+          }
+        ],
+        "title": "Go OS Threads Count",
+        "type": "timeseries"
+      }
+    ],
+    "schemaVersion": 39,
+    "tags": [],
+    "templating": {
+      "list": []
+    },
+    "time": {
+      "from": "now-6h",
+      "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "browser",
+    "title": "Caddy_Health",
+    "version": 21,
+    "weekStart": ""
+  }

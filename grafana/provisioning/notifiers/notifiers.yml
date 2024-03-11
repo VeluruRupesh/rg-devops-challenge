@@ -1,0 +1,7 @@
+notifiers:
+  - name: 'Email Notifications'
+    type: 'email'
+    uid: 'email-notifier'
+    is_default: true
+    settings:
+      addresses: 'test.example@gmail.com'
